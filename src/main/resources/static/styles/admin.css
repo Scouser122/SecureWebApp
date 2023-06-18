@@ -1,0 +1,19 @@
+.add_user_form {
+    border-color: black;
+    border-style: double;
+    padding: 4px;
+    margin: 2px;
+    width: 300px;
+}
+
+.user_form_item {
+    padding: 2px;
+}
+
+.users_list_div {
+    border-color: black;
+    border-style: double;
+    padding: 4px;
+    margin: 2px;
+    width: 300px;
+}

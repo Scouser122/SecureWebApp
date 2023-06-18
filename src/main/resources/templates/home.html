@@ -1,11 +1,19 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 <head>
-    <title>Spring Security Example</title>
+    <title>Spring Security Example - Home</title>
 </head>
 <body>
 <h1>Welcome!</h1>
 
-<p>Click <a th:href="@{/hello}">here</a> to see a greeting.</p>
+<p th:if="${userRole} == null">
+    <a th:href="@{/login}">Login</a> or <a th:href="@{/signup}">sign up</a> to work with site.
+</p>
+<p th:if="${userRole} == 'ADMIN'">
+    Continue to <a th:href="@{/admin}">admin</a> to work with site.
+</p>
+<p th:if="${userRole} == 'USER'">
+    Continue to <a th:href="@{/user}">user</a> to work with site.
+</p>
 </body>
 </html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <title>Spring Security Example - Admin</title>
+  <link th:href="@{/styles/admin.css}" rel="stylesheet" />
+</head>
+<body>
+  <div>
+    <p>This is admin page</p>
+  </div>
+  <div class="users_list_div">
+    <p>Users list:</p>
+    <table>
+      <tr th:each="user: ${users}">
+        <td>
+          Login: <span th:text="${user.login}"></span>
+          , role: <span th:text="${user.role}"></span>
+          &nbsp;<a th:href="'/delete_user?login=' + ${user.login}">Delete</a>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <form th:action="@{/add_user}" method="post" class="add_user_form">
+    <p>Add new user:</p>
+    <div class="user_form_item"><label> User Name : <input type="text" name="username"/> </label></div>
+    <div class="user_form_item"><label> Password: <input type="password" name="password"/> </label></div>
+    <div class="user_form_item">
+      <label> Role: </label>
+      <select name="role">
+        <option th:each="role: ${roles}"
+                th:value="${role}"
+                th:text="${role}"
+                th:selected="${role.name} == ${defaultRole}">
+        </option>
+      </select>
+    </div>
+    <div class="user_form_item"><input type="submit" value="Add user"/></div>
+  </form>
+  <div th:if="${message}">
+    <p th:text="${message}" style="color:blue"></p>
+  </div>
+  <div th:if="${error}">
+    <p th:text="${error}" style="color:red"></p>
+  </div>
+  <form th:action="@{/logout}" method="post">
+    <p>
+      <input type="submit" value="Sign Out"/>
+    </p>
+  </form>
+</body>
+</html>
